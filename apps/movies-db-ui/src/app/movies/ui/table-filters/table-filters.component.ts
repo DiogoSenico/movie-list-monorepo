@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
