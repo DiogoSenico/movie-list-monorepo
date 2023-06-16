@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*.ts", "src/app/movies/ui/movie-table/definitions/headers.constts"],
+  "compilerOptions": {
+    "types": ["jest", "node"]
+  }
+}

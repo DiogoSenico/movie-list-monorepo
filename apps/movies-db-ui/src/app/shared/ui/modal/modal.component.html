@@ -1,0 +1,28 @@
+<ng-container *ngIf="isOpen">
+  <div
+    class="fixed inset-0 bg-gray-500 bg-opacity-20"
+    (click)="onClose()"
+  ></div>
+  <div
+    class="fixed inset-0 flex justify-center items-center pointer-events-none sm:container px-4 py-16"
+    (click)="$event.preventDefault()"
+  >
+    <div
+      class="flex flex-col gap-4 overflow-hidden pointer-events-auto bg-white text-left shadow-xl transition-all max-h-full max-w-full w-full sm:m-16 px-14 py-4"
+    >
+      <header>
+        <div class="relative gap-8 max-w-full mb-4 mt-3 justify-between">
+          <h1 class="text-3xl truncate text-primary-title mr-4" [title]="title">{{ title }}</h1>
+          <button (click)="onClose()" class="absolute right-0 top-0 translate-x-full flex flex-col justify-center">
+            <senikorg-icon-close></senikorg-icon-close>
+            <span class="text-2xs uppercase text-fadded-text">close</span>
+          </button>
+        </div>
+        <hr class="w-14 h-0.5 border-none bg-primary-highlight" />
+      </header>
+      <section class="flex-1 overflow-auto">
+        <ng-content></ng-content>
+      </section>
+    </div>
+  </div>
+</ng-container>

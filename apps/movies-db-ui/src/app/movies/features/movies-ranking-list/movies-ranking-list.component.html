@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-6">
+  <senikorg-table-filters
+    [activeFilter]="activeFilterType$ | async"
+    (filterChange)="onFilterChange($event)"
+  ></senikorg-table-filters>
+  <senikorg-movie-table
+    [movies]="(movies$ | async) || []"
+    (detailsClick)="onDetailsClick($event)"
+  ></senikorg-movie-table>
+</div>
+<br /><br />
+
+<senikorg-modal
+  *ngIf="{ selected: (selectedMovie$ | async) } as movie"
+  [isOpen]="movie.selected !== null"
+  [title]="movie.selected?.title || ''"
+  (closed)="onModalClose()"
+>
+  <senikorg-movie-details [movie]="movie.selected"></senikorg-movie-details>
+</senikorg-modal>

@@ -1,0 +1,90 @@
+<div *ngIf="movie" class="flex gap-4 flex-col">
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{ data: { title: 'Year', text: movie.year } }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="infoAsList"
+    [ngTemplateOutletContext]="{ data: { title: 'Genre', list: movie.genres } }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Description', text: movie.description }
+    }"
+  ></ng-container>
+  <div class="flex gap-8">
+    <ng-container
+      [ngTemplateOutlet]="info"
+      [ngTemplateOutletContext]="{
+        data: { title: 'Director', text: movie.director, highlight: true }
+      }"
+    ></ng-container>
+    <ng-container
+      [ngTemplateOutlet]="infoAsList"
+      [ngTemplateOutletContext]="{
+        data: { title: 'Actors', list: movie.actors, highlight: true }
+      }"
+    ></ng-container>
+  </div>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Runtime', text: movie.runtimeMins + ' mins' }
+    }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Rating', text: movie.rating }
+    }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Votes', text: movie.votes }
+    }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Revenue', text: movie.revenue | currency }
+    }"
+  ></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="info"
+    [ngTemplateOutletContext]="{
+      data: { title: 'Metascore', text: movie.metascore }
+    }"
+  ></ng-container>
+</div>
+
+<ng-template #info let-data="data">
+  <div>
+    <span class="text-sm text-fadded-text">{{ data.title }}</span>
+    <p
+      class="text-md font-semibold"
+      [ngClass]="
+        data.highlight ? 'text-primary-highlight' : 'text-primary-text'
+      "
+    >
+      {{ data.text }}
+    </p>
+  </div>
+</ng-template>
+
+<ng-template #infoAsList let-data="data">
+  <div>
+    <span class="text-sm text-fadded-text">{{ data.title }}</span>
+    <p
+      class="text-md font-semibold"
+      [ngClass]="
+        data.highlight ? 'text-primary-highlight' : 'text-primary-text'
+      "
+    >
+      <ng-container *ngFor="let item of data.list; let i = index">
+        {{ item }}{{ data.list.length - 1 === i ? '' : ',' }}
+      </ng-container>
+    </p>
+  </div>
+</ng-template>

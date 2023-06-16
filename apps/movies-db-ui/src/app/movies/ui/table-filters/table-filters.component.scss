@@ -1,0 +1,13 @@
+.overlay {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-color: black;
+  opacity: theme('backdropOpacity.20');
+}
+
+.translate-end {
+  @media (min-width: 768px) {
+    transform: translateX(calc(100% + theme('spacing.2')));
+  }
+}
