@@ -1,0 +1,51 @@
+<div class="relative inline-flex gap-2 text-xs items-center">
+  <div class="inline-flex gap-4">
+    <button
+      [ngClass]="
+        activeFilter === FILTER_TYPES.TOP_REVENUE
+          ? 'bg-primary-active text-primary-dark font-medium'
+          : ''
+      "
+      class="text-fadded-text border border-fadded rounded-full py-1.5 px-3"
+      (click)="onFilterRevenueClick()"
+    >
+      Top 10 Revenue
+    </button>
+    <div class="relative">
+      <button
+        [ngClass]="
+          activeFilter === FILTER_TYPES.TOP_REVENUE_PER_YEAR
+            ? 'bg-primary-active text-primary-dark font-medium'
+            : ''
+        "
+        class="text-fadded-text border border-fadded rounded-full py-1.5 px-3 inline-flex gap-x-1.5"
+        (click)="onFilterRevenuePerYearClick()"
+      >
+        Top 10 Revenue by Year
+      </button>
+      <div
+        class="overlay"
+        (click)="onBackgroundClick()"
+        *ngIf="isDropdownOpen$ | async"
+      ></div>
+      <div
+        *ngIf="isDropdownOpen$ | async"
+        class="absolute flex flex-col bg-white shadow-lg py-4 right-0 md:top-0 w-full text-center translate-end"
+      >
+        <span class="text-fadded-text text-xs mb-4">Select Year</span>
+        <div class="flex flex-col text-sm text-primary-text">
+          <p
+            *ngFor="let year of YEARS"
+            class="cursor-pointer py-1 w-full hover:bg-gray-200 font-medium"
+            (click)="onYearClick(year)"
+          >
+            {{ year }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activeFilter !== null" (click)="onResetFilter()">
+    <senikorg-icon-reset></senikorg-icon-reset>
+  </div>
+</div>

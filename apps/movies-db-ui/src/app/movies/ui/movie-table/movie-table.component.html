@@ -1,0 +1,47 @@
+<table class="table-fixed border-collapse w-full">
+  <colgroup>
+    <col style="width: 10%" />
+    <col style="width: 50%" />
+    <col style="width: 15%" />
+    <col style="width: 17.5%" />
+    <col style="width: 7.5%" />
+  </colgroup>
+  <thead>
+    <tr class="border-b border-b-primary-vivid border-solid">
+      <th
+        *ngFor="let headerKey of TABLE_HEADERS_ORDER"
+        class="text-left text-primary-vivid text-2xs uppercase px-4 py-2"
+      >
+        {{ TABLE_HEADERS_LABEL[headerKey] }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let movie of movies"
+      class="border-b border-b-fadded border-solid"
+    >
+      <td
+        *ngFor="let headerKey of TABLE_HEADERS_ORDER"
+        class="p-3 text-base h-4"
+        [ngClass]="{
+          'text-center': headerKey === 'ranking',
+          'cursor-pointer': headerKey === 'actions'
+        }"
+      >
+        <p
+          *ngIf="headerKey !== 'actions'"
+          class="truncate text-md font-semibold text-primary-text"
+          [title]="movie[headerKey]"
+        >
+          {{ movie[headerKey] }}
+        </p>
+        <div (click)="onDetailsClick(movie)" class="cursor-pointer px-2">
+          <senikorg-icon-eye
+            *ngIf="headerKey === 'actions'"
+          ></senikorg-icon-eye>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
